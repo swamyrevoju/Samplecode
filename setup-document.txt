@@ -1,2 +1,2 @@
 Node version-11
-Mongo DB version: 5
+Mongo DB version: 6
