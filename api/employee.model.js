@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// Define collection and schema for Business
-let Business = new Schema({
+// Define collection and schema for Employee
+let Employee = new Schema({
   Employee_name: {
     type: String
   },
@@ -26,7 +26,7 @@ let Business = new Schema({
   }
 
 },{
-    collection: 'business'
+    collection: 'employee'
 });
 
-module.exports = mongoose.model('Business', Business);
+module.exports = mongoose.model('Employee', Employee);

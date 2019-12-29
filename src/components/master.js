@@ -74,8 +74,8 @@ import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-tabs/style/react-tabs.css';
 
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import Test from "./test.component";
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+//import Test from "./test.component";
 
 //import LandingPage from "./landingpage";
 //import Transaction from "./transaction";
@@ -85,9 +85,7 @@ import {  Tab, Tabs, TabList,TabPanel } from 'react-tabs';
 
 
 
-import Create from "../employee/create.component";
-import Edit from '../employee/edit.component';
-import Index from '../employee/index.component';
+
 
 /*import AddOrganization from '../organization/addOrganization.component';
 import EditOrganization from '../organization/editOrganization.component';
@@ -115,7 +113,7 @@ class Master extends Component {
                 <Tabs  onChange= {(tabId) => this.setState({ activeTab: tabId})} ripple>
 
                     <TabList>
-                    <Tab>Organization</Tab>
+                  {/*  <Tab>Organization</Tab>*/}
 
                     <Tab>Branch</Tab>
                     <Tab>Department</Tab>
@@ -123,8 +121,8 @@ class Master extends Component {
 
                     </TabList>
 
-                    <TabPanel> <Test/></TabPanel>
-                    <TabPanel tabId="my-tabpanel" component={Branch}></TabPanel>
+                     {/*  <TabPanel> <Organization/></TabPanel>*/}
+                    <TabPanel> <Branch/></TabPanel>
                     <TabPanel> <Department/></TabPanel>
                     <TabPanel> <Designation/></TabPanel>
                 </Tabs>
@@ -135,9 +133,7 @@ class Master extends Component {
           <Switch>
         
 
-              <Route exact path='/create' component={ Create } />
-              <Route path='/edit/:id' component={ Edit } />
-              <Route path='/index' component={ Index } />
+             
               {/*<Route exact path='/addOrganization' component={ AddOrganization } />
               <Route path='/editOrganization/:id' component={ EditOrganization } />
               <Route path='/organization' component={ Organization } />*/}

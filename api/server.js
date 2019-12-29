@@ -5,7 +5,7 @@ const PORT = 4000;
 const cors = require('cors');
 const mongoose = require('mongoose');
 const config = require('./DB.js');
-//const businessRoute = require('./business.route');
+const employeeRoute = require('./employee.route');
 const organizationRoute = require('./organization.route');
 const designationRoute = require('./designation.route');
 const branchRoute = require('./branch.route');
@@ -24,7 +24,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-//app.use('/business', businessRoute);
+app.use('/employee', employeeRoute);
 app.use('/organization', organizationRoute);
 app.use('/designation', designationRoute);
 app.use('/department', departmentRoute);
