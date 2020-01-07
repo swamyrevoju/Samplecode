@@ -52,6 +52,8 @@ employeeRoutes.route('/update/:id').post(function (req, res) {
         employee.Address = req.body.Address;
         employee.Designation = req.body.Designation;
         employee.joiningDate = req.body.joiningDate;
+        employee.Salary = req.body.Salary;
+
 
 
 

@@ -9,6 +9,10 @@ import Create from "../employee/create.component";
 import Edit from '../employee/edit.component';
 import Index from '../employee/index.component';
 
+import AddPayslip from "../payslip/addpayslip.component";
+import EditPayslip from '../payslip/editpayslip.component';
+import Payslip from '../payslip/payslip.component';
+
 
 class Transaction extends Component {
     render() {
@@ -19,11 +23,11 @@ class Transaction extends Component {
                         
                         <TabList>
                             <Tab>Employee</Tab>
-                            <Tab>PaySlip</Tab>
+                            <Tab>Payslip</Tab>
                         </TabList>
 
                         <TabPanel> <Index/></TabPanel>
-                   {/*  <TabPanel> <PaySlip/></TabPanel>*/}
+                        <TabPanel> <Payslip/></TabPanel>
 
                     </Tabs>
                 </div>
@@ -32,6 +36,10 @@ class Transaction extends Component {
               <Route exact path='/create' component={ Create } />
               <Route path='/edit/:id' component={ Edit } />
               <Route path='/index' component={ Index } />
+
+              <Route exact path='/AddPayslip' component={ AddPayslip } />
+              <Route path='/editPayslip/:id' component={ EditPayslip } />
+              <Route path='/payslip' component={ Payslip } />
 
             </Switch>
               

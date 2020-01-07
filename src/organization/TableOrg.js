@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-class TableRow extends Component {
+class TableOrg extends Component {
 
   constructor(props) {
         super(props);
         this.delete = this.delete.bind(this);
     }
     delete() {
-        axios.get('http://localhost:4000/employee/delete/'+this.props.obj._id)
+        axios.get('http://localhost:4000/organization/delete/'+this.props.obj._id)
             .then(console.log('Deleted'))
             .catch(err => console.log(err))
     }
@@ -18,31 +18,16 @@ class TableRow extends Component {
    
         <tr>
           <td>
-            {this.props.obj.Employee_name}
+            {this.props.obj.Organization_name}
           </td>
           <td>
-            {this.props.obj.Employee_id}
-          </td>
-          <td>
-            {this.props.obj.Phone_number}
-          </td>
-          <td>
-            {this.props.obj.Email_id}
+            {this.props.obj.Organization_phone}
           </td>
           <td>
             {this.props.obj.Address}
           </td>
           <td>
-            {this.props.obj.Designation}
-          </td>
-          <td>
-            {this.props.obj.joiningDate}
-          </td>
-          <td>
-            {this.props.obj.Salary}
-          </td>
-          <td>
-            <Link to={"/edit/"+this.props.obj._id} className="btn btn-primary">Edit</Link>
+            <Link to={"/editOrganization/"+this.props.obj._id} className="btn btn-primary">Edit</Link>
           </td>
           <td>
             <button onClick={this.delete} className="btn btn-danger">Delete</button>
@@ -54,4 +39,4 @@ class TableRow extends Component {
 }
 }
 
-export default TableRow;
+export default TableOrg;

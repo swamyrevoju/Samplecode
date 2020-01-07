@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-export default class Create extends Component {
+export default class EditPayslip extends Component {
   constructor(props) {
     super(props);
     this.onChangeEmployeeName = this.onChangeEmployeeName.bind(this);
@@ -12,8 +12,8 @@ export default class Create extends Component {
     this.onChangeDesignation = this.onChangeDesignation.bind(this);
     this.onChangeJoiningDate = this.onChangeJoiningDate.bind(this);
     this.onChangeSalary = this.onChangeSalary.bind(this);
-    
 
+    
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
@@ -23,13 +23,33 @@ export default class Create extends Component {
       Email_id:'',
       Address:'',
       Designation:'',
-      joiningDate: '',
-      Salary: ''
+      joiningDate:'',
+      Salary:''
 
     }
   }
- 
-  onChangeEmployeeName(e) {
+
+  componentDidMount() {
+      axios.get('http://localhost:4000/employee/edit/'+this.props.match.params.id)
+          .then(response => {
+              this.setState({ 
+                Employee_name: response.data.Employee_name, 
+                Employee_id: response.data.Employee_id,
+                Phone_number: response.data.Phone_number,
+                Email_id: response.data.Email_id,
+                Address: response.data.Address,
+                Designation: response.data.Designation,
+                joiningDate: response.data.joiningDate,
+                Salary: response.data.Salary
+
+              });
+          })
+          .catch(function (error) {
+              console.log(error);
+          })
+    }
+
+    onChangeEmployeeName(e) {
     this.setState({
       Employee_name: e.target.value
     });
@@ -37,50 +57,43 @@ export default class Create extends Component {
   onChangeEmployeeId(e) {
     this.setState({
       Employee_id: e.target.value
-    }) 
+    });  
   }
   onChangePhoneNumber(e) {
     this.setState({
       Phone_number: e.target.value
-    })
+    });
   }
   onChangeEmailId(e) {
     this.setState({
       Email_id: e.target.value
-    })  
+    });  
   }
   onChangeDesignation(e) {
     this.setState({
       Designation: e.target.value
-    }) 
+    });  
   }
-
-  onChangeAddress(e) {
-    this.setState({
-      Address: e.target.value
-    })
-  }
-
-  
   onChangeJoiningDate(e) {
     this.setState({
       joiningDate: e.target.value
-    })
+    });  
   }
-
+  onChangeAddress(e) {
+    this.setState({
+      Address: e.target.value
+    });  
+  }
   onChangeSalary(e) {
     this.setState({
       Salary: e.target.value
     })
   }
 
-  
   onSubmit(e) {
-   e.preventDefault();
-   console.log("Employee_name: "+this.state.Employee_name);
-
+    e.preventDefault();
     const obj = {
-      Employee_name: this.state.Employee_name,
+      Employee_name : this.state.Employee_name,
       Employee_id : this.state.Employee_id,
       Phone_number : this.state.Phone_number,
       Email_id : this.state.Email_id,
@@ -90,28 +103,18 @@ export default class Create extends Component {
       Salary : this.state.Salary
 
     };
-    console.log("date: "+this.state.joiningDate);
-    axios.post('http://localhost:4000/employee/add', obj)
+    axios.post('http://localhost:4000/employee/update/'+this.props.match.params.id, obj)
         .then(res => console.log(res.data));
-        this.props.history.push('/index');
-    this.setState({
-      Employee_name: '',
-      Employee_id: '',
-      Phone_number: '',
-      Email_id: '',
-      Address: '',
-      Designation: '',
-      joiningDate: '',
-      Salary: ''
-    })
+    
+    this.props.history.push('/index');
   }
  
   render() {
     return (
         <div style={{ marginTop: 10 }}>
-            <h3 align="center" >Add  Employee</h3>
+            <h3 align="center">Update Payslip</h3>
             <form onSubmit={this.onSubmit}>
-                <div className="form-group">
+            <div className="form-group">
                     <label>Employee Name:  </label>
                     <input 
                       type="text" 
@@ -129,7 +132,7 @@ export default class Create extends Component {
                       />
                 </div>
                 <div className="form-group">
-                    <label>Phone : </label>
+                    <label>Phone: </label>
                     <input type="tel" 
                       className="form-control"
                       value={this.state.Phone_number}
@@ -145,9 +148,8 @@ export default class Create extends Component {
                       />
                 </div>
                 <div className="form-group">
-                  
                     <label>Address: </label>
-                    <input type="text" 
+                    <input type="textarea" 
                       className="form-control"
                       value={this.state.Address}
                       onChange={this.onChangeAddress}
@@ -162,7 +164,7 @@ export default class Create extends Component {
                       />
                 </div>
                 <div className="form-group">
-                    <label>Data of joining: </label>
+                    <label>Joining Date: </label>
                     <input type="date" 
                       className="form-control"
                       value={this.state.joiningDate}
@@ -181,7 +183,7 @@ export default class Create extends Component {
 
                 <div className="form-group">
                     <input type="submit" 
-                     value="Add Employee" 
+                      value="Update Business" 
                       className="btn btn-primary"/>
                 </div>
             </form>

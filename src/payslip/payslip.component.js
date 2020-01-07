@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import TableRow from './TableRow';
+import TablePayslip from './TablePayslip';
 import { Link } from 'react-router-dom';
 
 
-export default class Index extends Component {
+export default class Payslip extends Component {
 
   constructor(props) {
       super(props);
@@ -19,9 +19,9 @@ export default class Index extends Component {
           console.log(error);
         })
     }
-    tabRow(){
+    TablePayslip(){
       return this.state.employee.map(function(object, i){
-          return <TableRow obj={object} key={i} />;
+          return <TablePayslip obj={object} key={i} />;
       });
     }
 
@@ -41,16 +41,16 @@ export default class Index extends Component {
                 <th>Designation</th>
                 <th>Joining date</th>
                 <th>Salary</th>
-
+            
                 <th colSpan="2">Action</th>
               </tr>
             </thead>
             <tbody>
           
-              { this.tabRow() }
+              { this.TablePayslip() }
 
               <tr>
-              <Link to={'/create'} className="nav-link" className="btn btn-primary">Add Employee</Link>
+              <Link to={'/addpayslip'} className="nav-link" className="btn btn-primary">Generate Payslip</Link>
               </tr>
 
             </tbody>

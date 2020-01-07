@@ -14,7 +14,7 @@ class Landing extends Component {
                         />
 
                         <div className= "banner-text">
-                            <h1>Human Resource Management</h1>
+                            <h1>Payroll Management</h1>
 
                             <hr/>
                             <p>“Take time to appreciate employees and they will reciprocate in a thousand ways.”</p>

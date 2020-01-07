@@ -46,7 +46,7 @@ organizationRoutes.route('/update/:id').post(function (req, res) {
       res.status(404).send("data is not found");
     else {
         organization.Organization_name = req.body.Organization_name;
-        organization.Organization_id = req.body.Organization_id;
+        organization.Organization_phone = req.body.Organization_phone;
         organization.Address = req.body.Address;
         
 

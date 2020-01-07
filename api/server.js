@@ -10,6 +10,8 @@ const organizationRoute = require('./organization.route');
 const designationRoute = require('./designation.route');
 const branchRoute = require('./branch.route');
 const departmentRoute = require('./department.route');
+const payheadRoute = require('./payhead.route');
+
 
 
 
@@ -29,6 +31,7 @@ app.use('/organization', organizationRoute);
 app.use('/designation', designationRoute);
 app.use('/department', departmentRoute);
 app.use('/branch', branchRoute);
+app.use('/payhead', payheadRoute);
 
 
 

@@ -11,6 +11,7 @@ import Report from "./report";
 const Main = () => (
 
     <Switch>
+        
         <Route exact path = "/" component = {LandingPage} />
         <Route path = "/master" component = {Master} />
         <Route path = "/transaction" component = {Transaction} />

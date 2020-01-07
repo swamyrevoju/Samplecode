@@ -11,6 +11,8 @@ export default class Edit extends Component {
     this.onChangeAddress = this.onChangeAddress.bind(this);
     this.onChangeDesignation = this.onChangeDesignation.bind(this);
     this.onChangeJoiningDate = this.onChangeJoiningDate.bind(this);
+    this.onChangeSalary = this.onChangeSalary.bind(this);
+
     
     this.onSubmit = this.onSubmit.bind(this);
 
@@ -21,7 +23,8 @@ export default class Edit extends Component {
       Email_id:'',
       Address:'',
       Designation:'',
-      joiningDate:''
+      joiningDate:'',
+      Salary:''
 
     }
   }
@@ -36,7 +39,10 @@ export default class Edit extends Component {
                 Email_id: response.data.Email_id,
                 Address: response.data.Address,
                 Designation: response.data.Designation,
-                joiningDate: response.data.joiningDate });
+                joiningDate: response.data.joiningDate,
+                Salary: response.data.Salary
+
+              });
           })
           .catch(function (error) {
               console.log(error);
@@ -78,6 +84,11 @@ export default class Edit extends Component {
       Address: e.target.value
     });  
   }
+  onChangeSalary(e) {
+    this.setState({
+      Salary: e.target.value
+    })
+  }
 
   onSubmit(e) {
     e.preventDefault();
@@ -88,7 +99,9 @@ export default class Edit extends Component {
       Email_id : this.state.Email_id,
       Address : this.state.Address,
       Designation : this.state.Designation,
-      joiningDate : this.state.joiningDate
+      joiningDate : this.state.joiningDate,
+      Salary : this.state.Salary
+
     };
     axios.post('http://localhost:4000/employee/update/'+this.props.match.params.id, obj)
         .then(res => console.log(res.data));
@@ -158,6 +171,16 @@ export default class Edit extends Component {
                       onChange={this.onChangeJoiningDate}
                       />
                 </div>
+
+                <div className="form-group">
+                    <label>Salary: </label>
+                    <input type="number" 
+                      className="form-control"
+                      value={this.state.Salary}
+                      onChange={this.onChangeSalary}
+                      />
+                </div>
+
                 <div className="form-group">
                     <input type="submit" 
                       value="Update Business" 

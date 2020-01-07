@@ -23,6 +23,9 @@ let Employee = new Schema({
   },
   joiningDate:{
     type: String
+  },
+  Salary:{
+    type: String
   }
 
 },{

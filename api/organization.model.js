@@ -6,8 +6,8 @@ let Organization = new Schema({
     Organization_name: {
     type: String
   },
-  Organization_id: {
-    type: String
+  Organization_phone: {
+    type: Number
   },
   Address: {
     type: String
