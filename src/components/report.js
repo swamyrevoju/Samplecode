@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import {  Tab, Tabs, TabList,TabPanel } from 'react-tabs';
 
-import AddPayslip from "../payslip/addpayslip.component";
-import EditPayslip from '../payslip/editpayslip.component';
-import Payslip from '../payslip/payslip.component';
+
+import Display from '../display/display.component';
+
 class Report extends Component {
     render() {
         return(
@@ -20,17 +20,15 @@ class Report extends Component {
                         <Tab>Payslip Details</Tab>
                     </TabList>
 
-                    <TabPanel> <Payslip/></TabPanel>
+                    <TabPanel> <Display/></TabPanel>
 
                 </Tabs>
             </div>
 
         <Switch>
           
-          <Route exact path='/AddPayslip' component={ AddPayslip } />
-          <Route path='/editPayslip/:id' component={ EditPayslip } />
-          <Route path='/payslip' component={ Payslip } />
-
+         
+          <Route path='/Display' component={ Display } />
         </Switch>
           
         </Router>
@@ -40,4 +38,4 @@ class Report extends Component {
 
 
 
-export default Report;
+export default Report;          

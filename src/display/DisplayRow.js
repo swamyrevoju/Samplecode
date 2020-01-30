@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
-class TableRow extends Component {
+class DisplayRow extends Component {
 
   constructor(props) {
         super(props);
@@ -41,12 +41,7 @@ class TableRow extends Component {
           <td>
             {this.props.obj.Salary}
           </td>
-          <td>
-           <Link to={"/edit/"+this.props.obj._id} className="btn btn-primary">Edit</Link>
-          </td>
-          <td>
-            <button onClick={this.delete} className="btn btn-danger">Delete</button>
-          </td>
+         
         
        </tr>
      
@@ -54,4 +49,4 @@ class TableRow extends Component {
 }
 }
 
-export default TableRow;
+export default DisplayRow;
