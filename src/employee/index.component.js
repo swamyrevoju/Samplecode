@@ -10,6 +10,11 @@ export default class Index extends Component {
       super(props);
       this.state = {employee: []};
     }
+
+    componentWillUnmount(){
+      this.setState({ employee: null });
+    }
+
     componentDidMount(){
       axios.get('http://localhost:4000/employee')
         .then(response => {
@@ -19,12 +24,21 @@ export default class Index extends Component {
           console.log(error);
         })
     }
-    tabRow(){
+
+    TableRow(callback){
+      console.log("callback ->"+callback);
       return this.state.employee.map(function(object, i){
-          return <TableRow obj={object} key={i} />;
+          return <TableRow obj={object} key={i}  action={callback}/>;
       });
     }
+  
 
+    onAddClick(){
+      this.props.action('add');
+   }
+   
+
+   
     render() {
       return (
         
@@ -47,12 +61,12 @@ export default class Index extends Component {
             </thead>
             <tbody>
           
-              { this.tabRow() }
+              { this.TableRow(this.props.action) }
 
               <tr>
-              <Link to={'/create'} className="nav-link" className="btn btn-primary">Add Employee</Link>
+                <Link  onClick={ e => this.onAddClick()}  className=" btn btn-primary">Add Employee</Link>
               </tr>
-
+           
             </tbody>
           </table>
         </div>

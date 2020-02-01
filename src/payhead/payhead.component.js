@@ -10,6 +10,11 @@ export default class Payhead extends Component {
       super(props);
       this.state = {payhead: []};
     }
+
+    componentWillUnmount(){
+      this.setState({ department: null });
+    }
+
     componentDidMount(){
       axios.get('http://localhost:4000/payhead')
         .then(response => {
@@ -19,11 +24,19 @@ export default class Payhead extends Component {
           console.log(error);
         })
     }
-    TablePayhead(){
+   
+    TablePayhead(callback){
+      console.log("callback ->"+callback);
       return this.state.payhead.map(function(object, i){
-          return <TablePayhead obj={object} key={i} />;
+          return <TablePayhead obj={object} key={i}  action={callback}/>;
       });
     }
+  
+    onAddClick(){
+      this.props.action('add');
+   }
+
+   
 
     render() {
       return (
@@ -43,10 +56,11 @@ export default class Payhead extends Component {
             </thead>
             <tbody>
           
-              { this.TablePayhead() }
+              { this.TablePayhead(this.props.action) }
 
+            
               <tr>
-              <Link to={'/addPayhead'} className="nav-link" className="btn btn-primary">Create Payhead</Link>
+                <Link  onClick={ e => this.onAddClick()}  className=" btn btn-primary"> Create Payheadn</Link>
               </tr>
 
             </tbody>

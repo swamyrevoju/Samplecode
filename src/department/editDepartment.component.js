@@ -19,8 +19,12 @@ export default class editDepartment extends Component {
     }
   }
 
+  
+
   componentDidMount() {
-      axios.get('http://localhost:4000/department/edit/'+this.props.match.params.id)
+    console.log("componentDidMount is called.."+this.props.dId);
+     // axios.get('http://localhost:4000/department/edit/'+this.props.match.params.id)
+     axios.get('http://localhost:4000/department/edit/'+this.props.dId)
           .then(response => {
               this.setState({ 
                 Department_name: response.data.Department_name, 
@@ -56,10 +60,12 @@ export default class editDepartment extends Component {
       Department_id : this.state.Department_id,
       Department_code : this.state.Department_code
     };
-    axios.post('http://localhost:4000/department/update/'+this.props.match.params.id, obj)
+    axios.post('http://localhost:4000/department/update/'+this.props.dId, obj)
+    
         .then(res => console.log(res.data));
     
-    this.props.history.push('/department');
+    //this.props.history.push('/department');
+    this.props.action();
   }
  
   render() {

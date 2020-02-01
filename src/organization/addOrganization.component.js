@@ -45,9 +45,12 @@ export default class AddOrganization extends Component {
       Organization_phone : this.state.Organization_phone,
       Address : this.state.Address
     };
+
     axios.post('http://localhost:4000/organization/add', obj)
         .then(res => console.log(res.data));
-        this.props.history.push('/organization');
+        //this.props.history.push('/organization');
+        this.props.action();
+      
     this.setState({
       Organization_name: '',
       Organization_phone: '',

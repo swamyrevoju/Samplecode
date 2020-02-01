@@ -20,7 +20,9 @@ export default class editDesignation extends Component {
   }
 
   componentDidMount() {
-      axios.get('http://localhost:4000/designation/edit/'+this.props.match.params.id)
+    console.log("componentDidMount is called.."+this.props.deId);
+     // axios.get('http://localhost:4000/designation/edit/'+this.props.match.params.id)
+     axios.get('http://localhost:4000/designation/edit/'+this.props.deId)
           .then(response => {
               this.setState({ 
                 Designation_name: response.data.Designation_name, 
@@ -31,6 +33,7 @@ export default class editDesignation extends Component {
               console.log(error);
           })
     }
+  
 
     onChangeDesignationName(e) {
     this.setState({
@@ -56,11 +59,15 @@ export default class editDesignation extends Component {
       Designation_id : this.state.Designation_id,
       Address : this.state.Address
     };
-    axios.post('http://localhost:4000/designation/update/'+this.props.match.params.id, obj)
+    axios.post('http://localhost:4000/designation/update/'+this.props.deId, obj)
         .then(res => console.log(res.data));
     
-    this.props.history.push('/designation');
+    //this.props.history.push('/designation');
+    this.props.action();
   }
+ 
+
+
  
   render() {
     return (

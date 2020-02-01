@@ -22,7 +22,8 @@ export default class editPayhead extends Component {
   }
 
   componentDidMount() {
-      axios.get('http://localhost:4000/payhead/edit/'+this.props.match.params.id)
+    console.log("componentDidMount is called.."+this.props.pId);
+     axios.get('http://localhost:4000/payhead/edit/'+this.props.pId)
           .then(response => {
               this.setState({ 
                 Employee_name: response.data.Employee_name, 
@@ -66,12 +67,13 @@ export default class editPayhead extends Component {
       Salary: this.state.Salary,
       Address : this.state.Address
     };
-    axios.post('http://localhost:4000/payhead/update/'+this.props.match.params.id, obj)
-        .then(res => console.log(res.data));
-    
-    this.props.history.push('/payhead');
+    axios.post('http://localhost:4000/payhead/update/'+this.props.pId, obj)
+    .then(res => console.log(res.data));
+  
+  //this.props.history.push('/designation');
+  this.props.action();
   }
- 
+    
   render() {
     return (
         <div style={{ marginTop: 10 }}>

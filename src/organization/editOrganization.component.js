@@ -20,7 +20,10 @@ export default class editOrganization extends Component {
   }
 
   componentDidMount() {
-      axios.get('http://localhost:4000/organization/edit/'+this.props.match.params.id)
+    console.log("componentDidMount is called.."+this.props.oId);
+     // axios.get('http://localhost:4000/designation/edit/'+this.props.match.params.id)
+     axios.get('http://localhost:4000/organization/edit/'+this.props.oId)
+ 
           .then(response => {
               this.setState({ 
                 Organization_name: response.data.Organization_name, 
@@ -56,11 +59,14 @@ export default class editOrganization extends Component {
       Organization_phone : this.state.Organization_phone,
       Address : this.state.Address
     };
-    axios.post('http://localhost:4000/organization/update/'+this.props.match.params.id, obj)
-        .then(res => console.log(res.data));
-    
-    this.props.history.push('/organization');
-  }
+   
+  axios.post('http://localhost:4000/organization/update/'+this.props.oId, obj)
+  .then(res => console.log(res.data));
+
+//this.props.history.push('/designation');
+this.props.action();
+}
+
  
   render() {
     return (

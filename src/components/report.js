@@ -15,8 +15,7 @@ class Report extends Component {
             <div className= "category-tabs">
                 <Tabs  onChange= {(tabId) => this.setState({ activeTab: tabId})} ripple>
                     
-                    <TabList>
-                       
+                    <TabList>                       
                         <Tab>Payslip Details</Tab>
                     </TabList>
 

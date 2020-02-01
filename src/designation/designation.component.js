@@ -10,6 +10,11 @@ export default class Designation extends Component {
       super(props);
       this.state = {designation: []};
     }
+
+    componentWillUnmount(){
+      this.setState({ designation: null });
+    }
+
     componentDidMount(){
       axios.get('http://localhost:4000/designation')
         .then(response => {
@@ -19,11 +24,20 @@ export default class Designation extends Component {
           console.log(error);
         })
     }
-    TableDesignation(){
+   
+    TableDesignation(callback){
+      console.log("callback ->"+callback);
       return this.state.designation.map(function(object, i){
-          return <TableDesignation obj={object} key={i} />;
+          return <TableDesignation obj={object} key={i}  action={callback}/>;
       });
     }
+  
+
+    onAddClick(){
+      this.props.action('add');
+   }
+   
+
 
     render() {
       return (
@@ -41,11 +55,13 @@ export default class Designation extends Component {
             </thead>
             <tbody>
           
-              { this.TableDesignation() }
+              { this.TableDesignation(this.props.action) }
+      
 
               <tr>
-              <Link to={'/addDesignation'} className="nav-link" className="btn btn-primary">Add Designation</Link>
+                <Link  onClick={ e => this.onAddClick()}  className=" btn btn-primary">Add Designation</Link>
               </tr>
+             
 
             </tbody>
           </table>

@@ -8,10 +8,14 @@ import {  Tab, Tabs, TabList,TabPanel } from 'react-tabs';
 import Create from "../employee/create.component";
 import Edit from '../employee/edit.component';
 import Index from '../employee/index.component';
+import EmployeeMain from '../employee/employeeMain.component';
+
 
 import AddPayslip from "../payslip/addpayslip.component";
 import EditPayslip from '../payslip/editpayslip.component';
 import Payslip from '../payslip/payslip.component';
+import PayslipMain from '../payslip/payslipMain.component';
+
 
 
 class Transaction extends Component {
@@ -26,8 +30,8 @@ class Transaction extends Component {
                             <Tab>Payslip</Tab>
                         </TabList>
 
-                        <TabPanel> <Index/></TabPanel>
-                        <TabPanel> <Payslip/></TabPanel>
+                        <TabPanel> <EmployeeMain/></TabPanel>
+                        <TabPanel> <PayslipMain/></TabPanel>
 
                     </Tabs>
                 </div>

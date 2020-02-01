@@ -10,6 +10,12 @@ export default class Organization extends Component {
       super(props);
       this.state = {organization: []};
     }
+
+    componentWillUnmount(){
+      this.setState({ organization: null });
+    }
+
+   
     componentDidMount(){
       axios.get('http://localhost:4000/organization')
         .then(response => {
@@ -19,11 +25,17 @@ export default class Organization extends Component {
           console.log(error);
         })
     }
-    TableOrg(){
+
+    TableOrg(callback){
+      console.log("callback ->"+callback);
       return this.state.organization.map(function(object, i){
-          return <TableOrg obj={object} key={i} />;
+          return <TableOrg obj={object} key={i}  action={callback}/>;
       });
     }
+  
+    onAddClick(){
+      this.props.action('add');
+   }
 
     render() {
       return (
@@ -33,9 +45,11 @@ export default class Organization extends Component {
           <table className="table table-striped" style={{ marginTop: 20 }}>
             <thead>
 
-            <tr>
-              <Link to={'/addOrganization'} className="nav-link" className="btn btn-primary"  >Organization</Link>
+          
+              <tr>
+                <Link  onClick={ e => this.onAddClick()}  className=" btn btn-primary"> Organization</Link>
               </tr>
+             
 
               <tr>
                 <th>Organization</th>
@@ -48,7 +62,7 @@ export default class Organization extends Component {
               </thead> 
               <tbody> 
           
-              { this.TableOrg() }
+              { this.TableOrg(this.props.action) }
            
               
 

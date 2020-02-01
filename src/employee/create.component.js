@@ -93,7 +93,9 @@ export default class Create extends Component {
     console.log("date: "+this.state.joiningDate);
     axios.post('http://localhost:4000/employee/add', obj)
         .then(res => console.log(res.data));
-        this.props.history.push('/index');
+       // this.props.history.push('/index');
+       this.props.action();
+       
     this.setState({
       Employee_name: '',
       Employee_id: '',

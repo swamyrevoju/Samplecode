@@ -45,9 +45,14 @@ export default class AddDepartment extends Component {
       Department_id : this.state.Department_id,
       Department_code : this.state.Department_code
     };
+
+    
+
     axios.post('http://localhost:4000/department/add', obj)
         .then(res => console.log(res.data));
-        this.props.history.push('/department');
+        //this.props.history.push('/department');
+        this.props.action();
+        
     this.setState({
       Department_name: '',
       Department_id: '',

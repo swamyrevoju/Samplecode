@@ -10,6 +10,11 @@ export default class Payslip extends Component {
       super(props);
       this.state = {employee: []};
     }
+
+    componentWillUnmount(){
+      this.setState({ department: null });
+    }
+
     componentDidMount(){
       axios.get('http://localhost:4000/employee')
         .then(response => {
@@ -19,11 +24,17 @@ export default class Payslip extends Component {
           console.log(error);
         })
     }
-    TablePayslip(){
+    TablePayslip(callback){
+      console.log("callback ->"+callback);
       return this.state.employee.map(function(object, i){
-          return <TablePayslip obj={object} key={i} />;
+          return <TablePayslip obj={object} key={i}  action={callback}/>;
       });
     }
+  
+    onAddClick(){
+      this.props.action('add');
+   }
+   
 
     render() {
       return (
@@ -47,11 +58,14 @@ export default class Payslip extends Component {
             </thead>
             <tbody>
           
-              { this.TablePayslip() }
+              { this.TablePayslip(this.props.action) }
 
+             
+               
               <tr>
-              <Link to={'/addpayslip'} className="nav-link" className="btn btn-primary">Generate Payslip</Link>
+                <Link  onClick={ e => this.onAddClick()}  className=" btn btn-primary">Generate Payslip</Link>
               </tr>
+
 
             </tbody>
           </table>

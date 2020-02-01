@@ -10,6 +10,10 @@ export default class Department extends Component {
       super(props);
       this.state = {department: []};
     }
+
+    componentWillUnmount(){
+      this.setState({ department: null });
+    }
     componentDidMount(){
       axios.get('http://localhost:4000/department')
         .then(response => {
@@ -19,11 +23,17 @@ export default class Department extends Component {
           console.log(error);
         })
     }
-    TableDepartment(){
+    TableDepartment(callback){
+      console.log("callback ->"+callback);
       return this.state.department.map(function(object, i){
-          return <TableDepartment obj={object} key={i} />;
+          return <TableDepartment obj={object} key={i}  action={callback}/>;
       });
     }
+
+    onAddClick(){
+      this.props.action('add');
+   }
+   
 
     render() {
       return (
@@ -41,12 +51,13 @@ export default class Department extends Component {
             </thead>
             <tbody>
           
-              { this.TableDepartment() }
+              { this.TableDepartment(this.props.action) }
+
+              
 
               <tr>
-              <Link to={'/addDepartment'} className="nav-link" className="btn btn-primary">Add Department</Link>
-              </tr>
-
+                <Link  onClick={ e => this.onAddClick()}  className=" btn btn-primary">Add Department</Link>
+                </tr>
             </tbody>
           </table>
         </div>

@@ -30,7 +30,8 @@ export default class EditPayslip extends Component {
   }
 
   componentDidMount() {
-      axios.get('http://localhost:4000/employee/edit/'+this.props.match.params.id)
+    console.log("componentDidMount is called.."+this.props.psId);
+     axios.get('http://localhost:4000/employee/edit/'+this.props.psId)
           .then(response => {
               this.setState({ 
                 Employee_name: response.data.Employee_name, 
@@ -40,14 +41,13 @@ export default class EditPayslip extends Component {
                 Address: response.data.Address,
                 Designation: response.data.Designation,
                 joiningDate: response.data.joiningDate,
-                Salary: response.data.Salary
-
-              });
+                Salary: response.data.Salary });
           })
           .catch(function (error) {
               console.log(error);
           })
     }
+ 
 
     onChangeEmployeeName(e) {
     this.setState({
@@ -103,11 +103,14 @@ export default class EditPayslip extends Component {
       Salary : this.state.Salary
 
     };
-    axios.post('http://localhost:4000/employee/update/'+this.props.match.params.id, obj)
-        .then(res => console.log(res.data));
-    
-    this.props.history.push('/index');
+
+    axios.post('http://localhost:4000/employee/update/'+this.props.psId, obj)
+    .then(res => console.log(res.data));
+  
+  //this.props.history.push('/designation');
+  this.props.action();
   }
+   
  
   render() {
     return (

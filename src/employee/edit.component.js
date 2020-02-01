@@ -28,9 +28,9 @@ export default class Edit extends Component {
 
     }
   }
-
   componentDidMount() {
-      axios.get('http://localhost:4000/employee/edit/'+this.props.match.params.id)
+    console.log("componentDidMount is called.."+this.props.eId);
+     axios.get('http://localhost:4000/employee/edit/'+this.props.eId)
           .then(response => {
               this.setState({ 
                 Employee_name: response.data.Employee_name, 
@@ -103,11 +103,13 @@ export default class Edit extends Component {
       Salary : this.state.Salary
 
     };
-    axios.post('http://localhost:4000/employee/update/'+this.props.match.params.id, obj)
-        .then(res => console.log(res.data));
-    
-    this.props.history.push('/index');
+
+    axios.post('http://localhost:4000/employee/update/'+this.props.eId, obj)
+    .then(res => console.log(res.data));
+  
+  this.props.action();
   }
+    
  
   render() {
     return (

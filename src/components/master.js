@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-tabs/style/react-tabs.css';
@@ -15,31 +14,45 @@ import {  Tab, Tabs, TabList,TabPanel } from 'react-tabs';
 import AddOrganization from '../organization/addOrganization.component';
 import EditOrganization from '../organization/editOrganization.component';
 import Organization from '../organization/organization.component';
+import OrganizationMain from '../organization/organizationMain.component';
+
 
 import AddDesignation from '../designation/addDesignation.component';
 import EditDesignation from '../designation/editDesignation.component';
 import Designation from '../designation/designation.component';
+import DesignationMain from '../designation/designationMain.component';
+
 
 import AddBranch from '../branchList/addBranch.component';
 import EditBranch from '../branchList/editBranch.component';
 import Branch from '../branchList/branch.component';
+import BranchMain from '../branchList/branchMain.component';
 
 import AddDepartment from '../department/addDepartment.component';
 import EditDepartment from '../department/editDepartment.component';
 import Department from '../department/department.component';
+import DepartmentMain from '../department/departmentMain.component';
+
 
 import AddPayhead from '../payhead/addPayhead.component';
 import EditPayhead from '../payhead/editPayhead.component';
 import Payhead from '../payhead/payhead.component';
+import PayheadMain from '../payhead/payheadMain.component';
+
 
 class Master extends Component {
-    
+  constructor() {
+    super();
+    this.state = { tabIndex: 0 };
+  }  
 
   render() {
     return (
       <Router>
          <div className= "category-tabs">
-                <Tabs  onChange= {(tabId) => this.setState({ activeTab: tabId})} ripple>
+                <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
+    {  //<Tabs  onChange= {(tabId) => this.setState({ activeTab: tabId})} ripple>
+    }
 
                     <TabList>
                         <Tab>Organization</Tab>
@@ -47,13 +60,15 @@ class Master extends Component {
                         <Tab>Department</Tab>
                         <Tab>Designation</Tab>
                         <Tab>Payhead</Tab>
+
                     </TabList>
 
-                    <TabPanel> <Organization/></TabPanel>
-                    <TabPanel> <Branch/></TabPanel>
-                    <TabPanel> <Department/></TabPanel>
-                    <TabPanel> <Designation/></TabPanel>
-                    <TabPanel> <Payhead/></TabPanel>
+                    <TabPanel> <OrganizationMain/></TabPanel>
+                    <TabPanel> <BranchMain/></TabPanel>
+                    <TabPanel> <DepartmentMain/></TabPanel>
+                    <TabPanel> <DesignationMain/></TabPanel>
+                    <TabPanel> <PayheadMain/></TabPanel>
+
                 </Tabs>
        
             </div>
@@ -82,7 +97,7 @@ class Master extends Component {
               <Route exact path='/addPayhead' component={ AddPayhead } />
               <Route path='/editPayhead/:id' component={ EditPayhead } />
               <Route path='/payhead' component={ Payhead} />
-             
+           
           </Switch>
         
       </Router>

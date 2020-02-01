@@ -45,9 +45,12 @@ export default class AddDesignation extends Component {
       Designation_id : this.state.Designation_id,
       Address : this.state.Address
     };
+
     axios.post('http://localhost:4000/designation/add', obj)
         .then(res => console.log(res.data));
-        this.props.history.push('/designation');
+          //this.props.history.push('/designation');
+        this.props.action();
+        
     this.setState({
       Designation_name: '',
       Designation_id: '',
