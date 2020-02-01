@@ -26,7 +26,10 @@ export default class editBranch extends Component {
   }
 
   componentDidMount() {
-      axios.get('http://localhost:4000/branch/edit/'+this.props.match.params.id)
+    console.log("componentDidMount is called.."+this.props.bId);
+    //axios.get('http://localhost:4000/branch/edit/'+this.props.match.params.id)
+
+      axios.get('http://localhost:4000/branch/edit/'+this.props.bId)
           .then(response => {
               this.setState({ 
                 Branch_name: response.data.Branch_name, 
@@ -37,6 +40,7 @@ export default class editBranch extends Component {
           .catch(function (error) {
               console.log(error);
           })
+          //this.props.action();
     }
 
     onChangeBranchName(e) {
@@ -70,10 +74,12 @@ export default class editBranch extends Component {
       Branch_code: this.state.Branch_code,
       Address : this.state.Address
     };
-    axios.post('http://localhost:4000/branch/update/'+this.props.match.params.id, obj)
+    axios.post('http://localhost:4000/branch/update/'+this.props.bId, obj)
         .then(res => console.log(res.data));
     
-    this.props.history.push('/branch');
+    //this.props.history.push('/branch');
+    this.props.action();
+
   }
  
   render() {
