@@ -24,7 +24,13 @@ export default class Payhead extends Component {
           return <TablePayhead obj={object} key={i} />;
       });
     }
-
+    takeUserToPage = () => {
+      console.log("takeUserToPage is called...");
+      //this.setState({currentPage: this.state.currentPage + 1, data: 
+      //dataMock.data[this.state.currentPage + 1]}, () => {
+      // this.props.history.push('Route')
+      //});
+    }
     render() {
       return (
         
@@ -46,7 +52,7 @@ export default class Payhead extends Component {
               { this.TablePayhead() }
 
               <tr>
-              <Link to={'/addPayhead'} className="nav-link" className="btn btn-primary">Create Payhead</Link>
+              <Link onClick={this.props.action} className="nav-link btn btn-primary">Create Payhead</Link>
               </tr>
 
             </tbody>

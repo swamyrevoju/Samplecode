@@ -10,6 +10,10 @@ export default class Branch extends Component {
       super(props);
       this.state = {branch: []};
     }
+
+    componentWillUnmount(){
+      this.setState({ branch: null });
+    }
     componentDidMount(){
       axios.get('http://localhost:4000/branch')
         .then(response => {
@@ -19,12 +23,16 @@ export default class Branch extends Component {
           console.log(error);
         })
     }
-    TableBranch(){
+    TableBranch(callback){
+      console.log("callback ->"+callback);
       return this.state.branch.map(function(object, i){
-          return <TableBranch obj={object} key={i} />;
+          return <TableBranch obj={object} key={i}  action={callback}/>;
       });
     }
 
+    onAddClick(){
+      this.props.action('add');
+   }
     render() {
       return (
         
@@ -42,10 +50,10 @@ export default class Branch extends Component {
             </thead>
             <tbody>
           
-              { this.TableBranch() }
+              { this.TableBranch(this.props.action) }
 
               <tr>
-              <Link to={'/addBranch'}  className="nav-link" className="btn btn-primary">Add Branch</Link>
+              <Link  onClick={ e => this.onAddClick()}  className="nav-link btn btn-primary">Add Branch</Link>
               </tr>
 
             </tbody>

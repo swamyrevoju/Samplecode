@@ -55,7 +55,8 @@ export default class AddBranch extends Component {
     };
     axios.post('http://localhost:4000/branch/add', obj)
         .then(res => console.log(res.data));
-        this.props.history.push('/branch');
+        //this.props.history.push('/branch');
+        this.props.action();
     this.setState({
       Branch_name: '',
       Branch_id: '',
