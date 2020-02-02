@@ -63,19 +63,11 @@ class Master extends Component {
 
                     </TabList>
 
-<<<<<<< HEAD
                     <TabPanel> <OrganizationMain/></TabPanel>
                     <TabPanel> <BranchMain/></TabPanel>
                     <TabPanel> <DepartmentMain/></TabPanel>
                     <TabPanel> <DesignationMain/></TabPanel>
                     <TabPanel> <PayheadMain/></TabPanel>
-=======
-                    <TabPanel> <Organization/></TabPanel>
-                    <TabPanel> <BranchMain/></TabPanel>
-                    <TabPanel> <Department/></TabPanel>
-                    <TabPanel> <Designation/></TabPanel>
-                    <TabPanel> <Payhead/></TabPanel>
->>>>>>> cf385dfa95f18a57a37c49908dec1d5f07362dc0
 
                 </Tabs>
        

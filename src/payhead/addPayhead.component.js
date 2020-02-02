@@ -59,12 +59,9 @@ export default class AddPayhead extends Component {
     axios.post('http://localhost:4000/payhead/add', obj)
         .then(res => console.log(res.data));
         //this.props.history.push('/payhead');
-<<<<<<< HEAD
-        this.props.action();
+       this.props.action();
 
-=======
-         this.props.action();
->>>>>>> cf385dfa95f18a57a37c49908dec1d5f07362dc0
+
     this.setState({
       Employee_name: '',
       Employee_code: '',

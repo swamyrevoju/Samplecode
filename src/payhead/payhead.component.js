@@ -31,7 +31,6 @@ export default class Payhead extends Component {
           return <TablePayhead obj={object} key={i}  action={callback}/>;
       });
     }
-<<<<<<< HEAD
   
     onAddClick(){
       this.props.action('add');
@@ -39,15 +38,7 @@ export default class Payhead extends Component {
 
    
 
-=======
-    takeUserToPage = () => {
-      console.log("takeUserToPage is called...");
-      //this.setState({currentPage: this.state.currentPage + 1, data: 
-      //dataMock.data[this.state.currentPage + 1]}, () => {
-      // this.props.history.push('Route')
-      //});
-    }
->>>>>>> cf385dfa95f18a57a37c49908dec1d5f07362dc0
+
     render() {
       return (
         
@@ -70,11 +61,7 @@ export default class Payhead extends Component {
 
             
               <tr>
-<<<<<<< HEAD
-                <Link  onClick={ e => this.onAddClick()}  className=" btn btn-primary"> Create Payheadn</Link>
-=======
-              <Link onClick={this.props.action} className="nav-link btn btn-primary">Create Payhead</Link>
->>>>>>> cf385dfa95f18a57a37c49908dec1d5f07362dc0
+                <Link  onClick={ e => this.onAddClick()}  className=" btn btn-primary"> Create Payhead</Link>
               </tr>
 
             </tbody>
