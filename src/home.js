@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Layout, Header, Navigation, Drawer, Content } from 'react-mdl';
-import Main from './components/main';
 import { Link } from "react-router-dom";
 
-import { Login, Register } from "./login/index";
+
 import "./App.scss";
-import Hoc from './hoc';
 
 
 
@@ -22,73 +19,34 @@ class HomeApp extends Component {
     };
   }
 
-  componentDidMount() {
-    this.rightSide.classList.add("right");
-  }
-
-  changeState() {
-    const { isLogginActive } = this.state;
-
-    if (isLogginActive) {
-      this.rightSide.classList.remove("right");
-      this.rightSide.classList.add("left");
-    } else {
-      this.rightSide.classList.remove("left");
-      this.rightSide.classList.add("right");
-    }
-    this.setState(prevState => ({ isLogginActive: !prevState.isLogginActive }));
+  onLogin(){
+    this.props.action(true);
   }
 
 
   render() {
 
-    const { isLogginActive } = this.state;
-    const current = isLogginActive ? "Register" : "Login";
-    const currentActive = isLogginActive ? "login" : "register";
+
 
 
     return (
-      <Hoc>
 
 
-<div className="App">
+  <div className="App">
         <div className="login">
           <div className="container" ref={ref => (this.container = ref)}>
-            {isLogginActive && (
-              <Login containerRef={ref => (this.current = ref)} />
-            )}
-            {!isLogginActive && (
-              <Register containerRef={ref => (this.current = ref)} />
-            )}
+          <Link onClick={ e => this.onLogin()}>Click here to login</Link>
+
           </div>
-          <RightSide
-            current={current}
-            currentActive={currentActive}
-            containerRef={ref => (this.rightSide = ref)}
-            onClick={this.changeState.bind(this)}
-          />
+
         </div>
       </div>
       
-     </Hoc>
 
    
     );
   }
 }
 
-const RightSide = props => {
-  return (
-    <div
-      className="right-side"
-      ref={props.containerRef}
-      onClick={props.onClick}
-    >
-      <div className="inner-container">
-        <div className="text">{props.current}</div>
-      </div>
-    </div>
-  );
-};
 
 export default HomeApp;
