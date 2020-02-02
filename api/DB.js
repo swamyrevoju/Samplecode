@@ -1,3 +1,3 @@
 module.exports = {
-    DB: 'mongodb://localhost:27018/OAUTHCLIENT'
+    DB: 'mongodb://localhost:27017/hrm'
 }
