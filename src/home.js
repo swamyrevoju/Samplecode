@@ -18,15 +18,27 @@ class HomeApp extends Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.showRegister = this.showRegister.bind(this);
     this.showLogin = this.showLogin.bind(this);
+    this.onChangeEmployeeCode = this.onChangeEmployeeCode.bind(this);
+    this.onChangePassword = this.onChangePassword.bind(this);
 
     this.state = {
       isLogginActive: true,
-      username:'',
-      password:'',
-      isNewUser:false
+      isNewUser:false,
+      employeeCode:'',
+      password:''
     };
   }
 
+  onChangeEmployeeCode(e) {
+    this.setState({
+      employeeCode: e.target.value
+    });
+  }
+  onChangePassword(e) {
+    this.setState({
+      password: e.target.value
+    }) 
+  }
   onLogin(){
     this.props.action(true);
   }
@@ -41,21 +53,60 @@ class HomeApp extends Component {
     e.preventDefault();
  
      const obj = {
-       username: this.state.username,
-       password : this.state.password
+       employeeCode: this.state.employeeCode,
+       password : this.state.password,
+       role: 'employee'
      };
  
-     this.props.action(true);
- /*
-     axios.post('http://localhost:4000/department/add', obj)
-         .then(res => console.log(res.data));
-         //this.props.history.push('/department');
-         this.props.action();
-         
-     this.setState({
-       username: '',
-       password: ''
-     }) */
+     
+     if(this.state.isNewUser){
+        axios.post('http://localhost:4000/user/add', obj)
+        .then(res => console.log(res.data));
+        //this.props.history.push('/department');
+        this.showLogin();
+  
+        this.setState({
+          employeeCode: '',
+          password: ''
+        })  
+     } else {
+       if(obj.employeeCode === 'admin' && obj.password === 'admin') {
+        this.props.action(true, true);
+       } else {
+      axios.post('http://localhost:4000/user/edit',obj)
+      .then(response => {
+          if(response.data){
+            console.log("response.data",response.data);
+            let user = response.data[0];
+            console.log("user",user);
+            if(user){
+              if(user.role === 'admin'){
+                console.log("Logged in as admin");
+                this.props.action(true, true);
+              } else {
+                console.log("Logged in as employee");
+                this.props.action(true, false);
+              }
+              this.props.action(true);
+            } else {
+              console.log("username/password incorrect");
+              this.props.action(false);
+            }
+
+          }
+          /*
+          this.setState({ 
+            Department_name: response.data.Department_name, 
+            Department_id: response.data.Department_id,
+            Department_code: response.data.Department_code });
+          */
+      })
+      .catch(function (error) {
+          console.log(error);
+      })
+    }
+     }
+
    }
 
   render() {
@@ -69,16 +120,16 @@ class HomeApp extends Component {
                       <input 
                         type="text" 
                         className="form-control" 
-                        value={this.state.Department_name}
-                        onChange={this.onChangeDepartmentName}
+                        value={this.state.employeeCode}  
+                        onChange={this.onChangeEmployeeCode}                      
                         />
                   </div>
                   <div className="form-group">
                       <label>Password: </label>
-                      <input type="text" 
+                      <input type="password" 
                         className="form-control"
-                        value={this.state.Department_id}
-                        onChange={this.onChangeDepartmentId}
+                        value={this.state.password}
+                        onChange={this.onChangePassword}
                         />
                   </div>
                   <div className="form-group">
@@ -98,15 +149,17 @@ class HomeApp extends Component {
                 type="text" 
                 className="form-control" 
                 value={this.state.employeeCode}
-                onChange={this.onChangeDepartmentName}
+                onChange={this.onChangeEmployeeCode}                    
+
                 />
           </div>
           <div className="form-group">
               <label>Password: </label>
-              <input type="text" 
+              <input type="password" 
                 className="form-control"
                 value={this.state.password}
-                onChange={this.onChangeDepartmentId}
+                onChange={this.onChangePassword}
+
                 />
           </div>
           <div className="form-group">

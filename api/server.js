@@ -11,6 +11,8 @@ const designationRoute = require('./designation.route');
 const branchRoute = require('./branch.route');
 const departmentRoute = require('./department.route');
 const payheadRoute = require('./payhead.route');
+const userRoute = require('./user.route');
+
 
 
 
@@ -32,6 +34,7 @@ app.use('/designation', designationRoute);
 app.use('/department', departmentRoute);
 app.use('/branch', branchRoute);
 app.use('/payhead', payheadRoute);
+app.use('/user', userRoute);
 
 
 

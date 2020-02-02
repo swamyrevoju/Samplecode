@@ -11,7 +11,7 @@ import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
     <BrowserRouter>
-    <App isLoggedIn={false}/>
+    <App isLoggedIn={false} isAdmin={false}/>
     </BrowserRouter>
 , document.getElementById('root'));
 
