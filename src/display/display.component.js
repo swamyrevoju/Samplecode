@@ -11,13 +11,20 @@ export default class Index extends Component {
       this.state = {employee: []};
     }
     componentDidMount(){
-      axios.get('http://localhost:4000/employee')
+      let employeeCode = this.props.employeeCode;
+      console.log("Report:Index:componentDidMount:employeeCode => "+employeeCode);
+      let empURL = "http://localhost:4000/employee";
+      if(employeeCode){
+        empURL = "http://localhost:4000/employee/getEmployee?employeeCode="+employeeCode;
+      }
+      axios.get(empURL)
         .then(response => {
           this.setState({ employee: response.data });
         })
         .catch(function (error) {
           console.log(error);
         })
+      
     }
     DisplayRow(){
       return this.state.employee.map(function(object, i){

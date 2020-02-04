@@ -82,12 +82,12 @@ class HomeApp extends Component {
             if(user){
               if(user.role === 'admin'){
                 console.log("Logged in as admin");
-                this.props.action(true, true);
+                this.props.action(true, true, user.employeeCode);
               } else {
                 console.log("Logged in as employee");
-                this.props.action(true, false);
+                this.props.action(true, false, user.employeeCode);
               }
-              this.props.action(true);
+              this.props.action(true, false, user.employeeCode);
             } else {
               console.log("username/password incorrect");
               this.props.action(false);

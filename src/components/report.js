@@ -6,7 +6,17 @@ import {  Tab, Tabs, TabList,TabPanel } from 'react-tabs';
 import Display from '../display/display.component';
 
 class Report extends Component {
+/*
+    constructor(props) {
+        super(props);
+        this.employeeCode = this.props.match.params.employeeCode;
+        console.log("Report -> employeeCode:"+this.props.match.params.employeeCode);        
+    }*/
     render() {
+        let params = new URLSearchParams(this.props.location.search);
+        let employeeCode = params.get("employeeCode");
+        console.log("Report -> employeeCode:"+employeeCode);   
+
         return(
         
 
@@ -19,7 +29,7 @@ class Report extends Component {
                         <Tab>Payslip Details</Tab>
                     </TabList>
 
-                    <TabPanel> <Display/></TabPanel>
+                    <TabPanel> <Display employeeCode={employeeCode}/></TabPanel>
 
                 </Tabs>
             </div>

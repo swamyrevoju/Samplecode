@@ -11,6 +11,7 @@ class App extends Component {
     constructor(props) {
         console.log("props.isLoggedIn:"+props.isLoggedIn);
         console.log("props.isAdmin:"+props.isAdmin);
+        console.log("props.employeeCode:"+props.employeeCode);
 
         super(props);
         this.state = {isLoggedIn: props.isLoggedIn};
@@ -22,16 +23,18 @@ class App extends Component {
       onLogOut(){
         this.setLoggetIn(false,false);
       }
-      setLoggetIn(isLoggedIn,isAdmin) {
-        console.log("setLoggetIn is called...");
+      setLoggetIn(isLoggedIn,isAdmin,employeeCode) {
+        console.log("setLoggetIn is called...employeeCode:"+employeeCode);
           this.setState({
             isLoggedIn: isLoggedIn ? true : false,
-            isAdmin: isAdmin ? true : false
+            isAdmin: isAdmin ? true : false,
+            employeeCode: employeeCode
           })
         }
   render() {
     const isLoggedIn = this.state.isLoggedIn;
     const isAdmin = this.state.isAdmin;
+    const employeeCode = this.state.employeeCode;
 
     console.log("isLoggedIn:"+isLoggedIn+" isAdmin:"+isAdmin);
     let body;
@@ -47,7 +50,7 @@ class App extends Component {
                 </Navigation>
         } else {
           nav = <Navigation>
-                  <Link to="/report">Report</Link> 
+                  <Link to={`/report?employeeCode=${employeeCode}`}>Report</Link> 
                   <Link onClick={ e => this.onLogOut()}  to="/logout">Logout</Link>               
                 </Navigation>
         }

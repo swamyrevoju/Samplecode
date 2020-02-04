@@ -75,4 +75,16 @@ employeeRoutes.route('/delete/:id').get(function (req, res) {
     });
 });
 
+
+employeeRoutes.route('/getEmployee').get(function (req, res) {
+  let employeeCode = req.query.employeeCode;
+  console.log("employeeCode :"+employeeCode);
+
+  Employee.find({Employee_id:employeeCode}, function (err, employee){
+    console.log("employee:"+employee);
+
+      res.json(employee);
+  });
+});
+
 module.exports = employeeRoutes;
